@@ -1,7 +1,5 @@
 package ua.pt.restapi.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
@@ -12,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -49,7 +46,6 @@ public class Weather implements Serializable {
 
 
     public Weather(String owner, String country, List<WeatherData> data) {
-        this.id = id;
         this.owner = owner;
         this.country = country;
         this.data = data;

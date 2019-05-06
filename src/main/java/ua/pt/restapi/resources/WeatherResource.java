@@ -1,6 +1,6 @@
 package ua.pt.restapi.resources;
 
-import ua.pt.restapi.dao.WeatherDAO;
+import ua.pt.restapi.dao.WeatherForecastDAO;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -15,7 +15,7 @@ import ua.pt.restapi.models.District;
 import ua.pt.restapi.models.Weather;
 import ua.pt.restapi.models.WeatherForecast;
 import ua.pt.restapi.models.WindSpeed;
-import ua.pt.restapi.service.WeatherService;
+import ua.pt.restapi.service.Service;
 
 @RequestScoped
 @Path("")
@@ -24,10 +24,10 @@ import ua.pt.restapi.service.WeatherService;
 public class WeatherResource {
 
     @Inject
-    WeatherDAO todoDAO;
+    WeatherForecastDAO todoDAO;
     
     @Inject
-    WeatherService service;
+    Service service;
 
     @GET
     @Path("windspeeds")

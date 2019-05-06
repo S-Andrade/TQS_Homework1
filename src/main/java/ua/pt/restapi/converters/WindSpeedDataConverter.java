@@ -3,7 +3,6 @@ package ua.pt.restapi.converters;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
-import java.util.List;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import ua.pt.restapi.models.WindSpeedData;
@@ -24,8 +23,8 @@ public class WindSpeedDataConverter implements AttributeConverter<WindSpeedData,
         Gson gson = new Gson();
         Type type = new TypeToken<WindSpeedData>(){}.getType();
 
-        String json = gson.toJson(windSpeedDataList, type);
-        return json;    }
+        return gson.toJson(windSpeedDataList, type);
+   }
 
     @Override
     public WindSpeedData convertToEntityAttribute(String windSpeedData) {
@@ -36,7 +35,7 @@ public class WindSpeedDataConverter implements AttributeConverter<WindSpeedData,
         Gson gson = new Gson();
         Type type = new TypeToken<WindSpeedData>(){}.getType();
 
-        WindSpeedData windSpeedDataList = gson.fromJson(windSpeedData, type);
-        return windSpeedDataList;    }
+        return gson.fromJson(windSpeedData, type);
+    }
 
 }

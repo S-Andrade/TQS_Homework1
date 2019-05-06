@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CacheStats.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TQS_Homework1</a> &gt; <a href="index.source.html" class="el_package">ua.pt.restapi.models</a> &gt; <span class="el_source">CacheStats.java</span></div><h1>CacheStats.java</h1><pre class="source lang-java linenums">package ua.pt.restapi.models;
+
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+/**
+ *
+ * @author ana
+ */
+@Entity
+@Table(name = &quot;cacheStats&quot;)
+@NamedQuery(name = &quot;CacheStats.find&quot;, query = &quot;SELECT t FROM CacheStats t&quot;)
+public class CacheStats implements Serializable{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column
+    private int numberOfRequests;
+
+    @Column
+    private int numberOfHits;
+
+    @Column
+    private int numberOfMisses;
+
+<span class="nc" id="L34">    public CacheStats() {</span>
+<span class="nc" id="L35">    }</span>
+
+<span class="fc" id="L37">    public CacheStats(int numberOfRequests, int numberOfHits, int numberOfMisses) {</span>
+<span class="fc" id="L38">        this.numberOfRequests = numberOfRequests;</span>
+<span class="fc" id="L39">        this.numberOfHits = numberOfHits;</span>
+<span class="fc" id="L40">        this.numberOfMisses = numberOfMisses;</span>
+<span class="fc" id="L41">    }</span>
+
+    public long getId() {
+<span class="fc" id="L44">        return id;</span>
+    }
+    public void setId(long id) {
+<span class="fc" id="L47">        this.id = id;</span>
+<span class="fc" id="L48">    }</span>
+
+    public int getNumberOfRequests() {
+<span class="fc" id="L51">        return numberOfRequests;</span>
+    }
+    public void setNumberOfRequests(int numberOfRequests) {
+<span class="fc" id="L54">        this.numberOfRequests = numberOfRequests;</span>
+<span class="fc" id="L55">    }</span>
+
+    public int getNumberOfHits() {
+<span class="fc" id="L58">        return numberOfHits;</span>
+    }
+    public void setNumberOfHits(int numberOfHits) {
+<span class="fc" id="L61">        this.numberOfHits = numberOfHits;</span>
+<span class="fc" id="L62">    }</span>
+
+    public int getNumberOfMisses() {
+<span class="fc" id="L65">        return numberOfMisses;</span>
+    }
+    public void setNumberOfMisses(int numberOfMisses) {
+<span class="fc" id="L68">        this.numberOfMisses = numberOfMisses;</span>
+<span class="fc" id="L69">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L73">        return &quot;CacheStats{&quot; + &quot;id=&quot; + id + &quot;, numberOfRequests=&quot; + numberOfRequests + &quot;, numberOfHits=&quot; + numberOfHits + &quot;, numberOfMisses=&quot; + numberOfMisses + '}';</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -1,0 +1,32 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+TQS_Homework1,ua.pt.restapi.converters,WindSpeedDataConverter.new TypeToken() {...},0,6,0,0,0,1,0,1,0,1
+TQS_Homework1,ua.pt.restapi.converters,WeatherDataConverter,2,40,1,3,1,10,1,4,0,3
+TQS_Homework1,ua.pt.restapi.converters,WeatherForecastDataConverter.new TypeToken() {...},0,6,0,0,0,1,0,1,0,1
+TQS_Homework1,ua.pt.restapi.converters,WindSpeedDataConverter,2,40,1,3,1,10,1,4,0,3
+TQS_Homework1,ua.pt.restapi.converters,DistrictDataConverter,2,40,1,3,1,10,1,4,0,3
+TQS_Homework1,ua.pt.restapi.converters,WindSpeedDataConverter.new TypeToken() {...},0,6,0,0,0,1,0,1,0,1
+TQS_Homework1,ua.pt.restapi.converters,WeatherForecastDataConverter.new TypeToken() {...},0,6,0,0,0,1,0,1,0,1
+TQS_Homework1,ua.pt.restapi.converters,WeatherDataConverter.new TypeToken() {...},0,6,0,0,0,1,0,1,0,1
+TQS_Homework1,ua.pt.restapi.converters,WeatherDataConverter.new TypeToken() {...},0,6,0,0,0,1,0,1,0,1
+TQS_Homework1,ua.pt.restapi.converters,DistrictDataConverter.new TypeToken() {...},0,6,0,0,0,1,0,1,0,1
+TQS_Homework1,ua.pt.restapi.converters,DistrictDataConverter.new TypeToken() {...},0,6,0,0,0,1,0,1,0,1
+TQS_Homework1,ua.pt.restapi.converters,WeatherForecastDataConverter,2,40,1,3,1,12,1,4,0,3
+TQS_Homework1,ua.pt.restapi.scheduling,FixedTimerBean,7,0,0,0,3,0,2,0,2,0
+TQS_Homework1,ua.pt.restapi.scheduling,Scheduling,61,0,6,0,13,0,5,0,2,0
+TQS_Homework1,ua.pt.restapi.dao,WeatherForecastDAO,101,458,20,26,29,106,21,27,6,19
+TQS_Homework1,ua.pt.restapi.dao,WeatherDAO,101,458,20,26,29,106,21,27,6,19
+TQS_Homework1,ua.pt.restapi.service,Service,0,96,0,0,0,29,0,5,0,5
+TQS_Homework1,ua.pt.restapi.service,WeatherService,0,96,0,0,0,29,0,5,0,5
+TQS_Homework1,ua.pt.restapi.views,ActionServlet,123,0,4,0,25,0,5,0,3,0
+TQS_Homework1,ua.pt.restapi.views,AppServlet,123,0,4,0,25,0,5,0,3,0
+TQS_Homework1,ua.pt.restapi.models,WeatherForecastData,57,103,0,0,1,43,1,22,1,22
+TQS_Homework1,ua.pt.restapi.models,WeatherData,0,43,0,0,0,19,0,10,0,10
+TQS_Homework1,ua.pt.restapi.models,CacheStats,3,67,0,0,2,18,1,10,1,10
+TQS_Homework1,ua.pt.restapi.models,District,9,36,0,0,2,14,2,8,2,8
+TQS_Homework1,ua.pt.restapi.models,WindSpeedData,0,43,0,0,0,16,0,10,0,10
+TQS_Homework1,ua.pt.restapi.models,DistrictData,0,93,0,0,0,31,0,20,0,20
+TQS_Homework1,ua.pt.restapi.models,Weather,0,43,0,0,0,16,0,10,0,10
+TQS_Homework1,ua.pt.restapi.models,WindSpeed,0,43,0,0,0,16,0,10,0,10
+TQS_Homework1,ua.pt.restapi.models,WeatherForecast,23,83,0,0,7,32,1,16,1,16
+TQS_Homework1,ua.pt.restapi.resources,ApplicationConfig,3,0,0,0,1,0,1,0,1,0
+TQS_Homework1,ua.pt.restapi.resources,WeatherResource,0,47,0,0,0,11,0,6,0,6

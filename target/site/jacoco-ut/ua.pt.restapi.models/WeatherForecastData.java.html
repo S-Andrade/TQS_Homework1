@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WeatherForecastData.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TQS_Homework1</a> &gt; <a href="index.source.html" class="el_package">ua.pt.restapi.models</a> &gt; <span class="el_source">WeatherForecastData.java</span></div><h1>WeatherForecastData.java</h1><pre class="source lang-java linenums">package ua.pt.restapi.models;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+@JsonIgnoreProperties({&quot;classPrecInt&quot;})
+public class WeatherForecastData implements Serializable {
+
+    @Id
+    @JsonIgnore
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column
+    private String precipitaProb;
+
+    @Column
+    @JsonProperty(&quot;tMin&quot;)
+    private String tMin;
+
+    @Column
+    @JsonProperty(&quot;tMax&quot;)
+    private String tMax;
+
+    @Column
+    private String predWindDir;
+
+    @Column
+    private int idWeatherType;
+
+    @Column
+    private int classWindSpeed;
+
+    @Column
+    private String longitude;
+
+    @Column
+    private String forecastDate;
+
+    @Column
+    private String latitude;
+
+<span class="fc" id="L51">    public WeatherForecastData() {</span>
+<span class="fc" id="L52">    }</span>
+
+<span class="fc" id="L54">    public WeatherForecastData(String precipitaProb, String tempMin, String tempMax, String predWindDir, int idWeatherType, int classWindSpeed, String longitude, String forecastDate, String latitude) {</span>
+<span class="fc" id="L55">        this.precipitaProb = precipitaProb;</span>
+<span class="fc" id="L56">        this.tMin = tempMin;</span>
+<span class="fc" id="L57">        this.tMax = tempMax;</span>
+<span class="fc" id="L58">        this.predWindDir = predWindDir;</span>
+<span class="fc" id="L59">        this.idWeatherType = idWeatherType;</span>
+<span class="fc" id="L60">        this.classWindSpeed = classWindSpeed;</span>
+<span class="fc" id="L61">        this.longitude = longitude;</span>
+<span class="fc" id="L62">        this.forecastDate = forecastDate;</span>
+<span class="fc" id="L63">        this.latitude = latitude;</span>
+<span class="fc" id="L64">    }</span>
+
+    public long getId() {
+<span class="fc" id="L67">        return id;</span>
+    }
+
+    public String getPrecipitaProb() {
+<span class="fc" id="L71">        return precipitaProb;</span>
+    }
+
+    public String getPredWindDir() {
+<span class="fc" id="L75">        return predWindDir;</span>
+    }
+
+    public int getIdWeatherType() {
+<span class="fc" id="L79">        return idWeatherType;</span>
+    }
+
+    public int getClassWindSpeed() {
+<span class="fc" id="L83">        return classWindSpeed;</span>
+    }
+
+    public String getLongitude() {
+<span class="fc" id="L87">        return longitude;</span>
+    }
+
+    public String getForecastDate() {
+<span class="fc" id="L91">        return forecastDate;</span>
+    }
+
+    public String getLatitude() {
+<span class="fc" id="L95">        return latitude;</span>
+    }
+
+    public String gettMin() {
+<span class="fc" id="L99">        return tMin;</span>
+    }
+
+    public String gettMax() {
+<span class="fc" id="L103">        return tMax;</span>
+    }
+
+    public void setId(long id) {
+<span class="fc" id="L107">        this.id = id;</span>
+<span class="fc" id="L108">    }</span>
+
+    public void setPrecipitaProb(String precipitaProb) {
+<span class="fc" id="L111">        this.precipitaProb = precipitaProb;</span>
+<span class="fc" id="L112">    }</span>
+
+    public void setPredWindDir(String predWindDir) {
+<span class="fc" id="L115">        this.predWindDir = predWindDir;</span>
+<span class="fc" id="L116">    }</span>
+
+    public void setIdWeatherType(int idWeatherType) {
+<span class="fc" id="L119">        this.idWeatherType = idWeatherType;</span>
+<span class="fc" id="L120">    }</span>
+
+    public void setClassWindSpeed(int classWindSpeed) {
+<span class="fc" id="L123">        this.classWindSpeed = classWindSpeed;</span>
+<span class="fc" id="L124">    }</span>
+
+    public void setLongitude(String longitude) {
+<span class="fc" id="L127">        this.longitude = longitude;</span>
+<span class="fc" id="L128">    }</span>
+
+    public void setForecastDate(String forecastDate) {
+<span class="fc" id="L131">        this.forecastDate = forecastDate;</span>
+<span class="fc" id="L132">    }</span>
+
+    public void setLatitude(String latitude) {
+<span class="fc" id="L135">        this.latitude = latitude;</span>
+<span class="fc" id="L136">    }</span>
+
+    public void settMin(String tMin) {
+<span class="fc" id="L139">        this.tMin = tMin;</span>
+<span class="fc" id="L140">    }</span>
+
+    public void settMax(String tMax) {
+<span class="fc" id="L143">        this.tMax = tMax;</span>
+<span class="fc" id="L144">    }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L148">        return &quot;WeatherForecastData{&quot; + &quot;\nid=&quot; + id + &quot;, \nprecipitaProb=&quot; + precipitaProb + &quot;, \ntempMin=&quot; + tMin + &quot;, \ntempMax=&quot; + tMax + &quot;, \npredWindDir=&quot; + predWindDir + &quot;, \nidWeatherType=&quot; + idWeatherType + &quot;, \nclassWindSpeed=&quot; + classWindSpeed + &quot;, \nlongitude=&quot; + longitude + &quot;, \nforecastDate=&quot; + forecastDate + &quot;, \nlatitude=&quot; + latitude + '}';</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

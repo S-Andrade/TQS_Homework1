@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WeatherForecastDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TQS_Homework1</a> &gt; <a href="index.source.html" class="el_package">ua.pt.restapi.dao</a> &gt; <span class="el_source">WeatherForecastDAO.java</span></div><h1>WeatherForecastDAO.java</h1><pre class="source lang-java linenums">package ua.pt.restapi.dao;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import ua.pt.restapi.models.CacheStats;
+import ua.pt.restapi.models.District;
+import ua.pt.restapi.models.DistrictData;
+import ua.pt.restapi.models.Weather;
+import ua.pt.restapi.models.WeatherData;
+import ua.pt.restapi.models.WeatherForecast;
+import ua.pt.restapi.models.WindSpeed;
+import ua.pt.restapi.models.WindSpeedData;
+import ua.pt.restapi.service.Service;
+
+@Stateless
+<span class="fc" id="L22">public class WeatherForecastDAO {</span>
+
+    @PersistenceContext(unitName = &quot;restapi_PU&quot;)
+    EntityManager em;
+
+    @Inject
+    Service service;
+
+    public Weather getWeather() {
+<span class="fc" id="L31">        List&lt;Weather&gt; weather = em.createNamedQuery(&quot;Weather.findAll&quot;, Weather.class).getResultList();</span>
+<span class="fc" id="L32">        CacheStats cacheStats = this.getCacheStats();</span>
+<span class="fc" id="L33">        cacheStats.setNumberOfRequests(cacheStats.getNumberOfRequests() + 1);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (weather.isEmpty()) {</span>
+<span class="fc" id="L35">            cacheStats.setNumberOfMisses(cacheStats.getNumberOfMisses() + 1);</span>
+<span class="fc" id="L36">            Weather w = service.consumeWeather();</span>
+<span class="fc" id="L37">            this.createWeather(w);</span>
+<span class="fc" id="L38">            weather.add(w);</span>
+<span class="fc" id="L39">        } else {</span>
+<span class="fc" id="L40">            cacheStats.setNumberOfHits(cacheStats.getNumberOfHits() + 1);</span>
+        }
+<span class="fc" id="L42">        this.updateCacheStats(cacheStats);</span>
+
+<span class="fc" id="L44">        return weather.get(0);</span>
+    }
+
+    public WeatherData findWeatherById(int idWeatherType) {
+<span class="fc" id="L48">        Weather weather = this.getWeather();</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        for (WeatherData w : weather.getData()) {</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">            if (w.getIdWeatherType() == idWeatherType) {</span>
+<span class="fc" id="L51">                return w;</span>
+            }
+<span class="nc" id="L53">        }</span>
+<span class="nc" id="L54">        return null;</span>
+    }
+
+    public void createWeather(Weather weather) {
+<span class="fc" id="L58">        em.persist(weather);</span>
+<span class="fc" id="L59">    }</span>
+
+    public void deleteWeather(Weather weather) {
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (!em.contains(weather)) {</span>
+<span class="nc" id="L63">            weather = em.merge(weather);</span>
+        }
+
+<span class="nc" id="L66">        em.remove(weather);</span>
+<span class="nc" id="L67">    }</span>
+
+    public WindSpeed getWindSpeed() {
+<span class="fc" id="L70">        List&lt;WindSpeed&gt; windSpeed = em.createNamedQuery(&quot;WindSpeed.findAll&quot;, WindSpeed.class).getResultList();</span>
+<span class="fc" id="L71">        CacheStats cacheStats = this.getCacheStats();</span>
+<span class="fc" id="L72">        cacheStats.setNumberOfRequests(cacheStats.getNumberOfRequests() + 1);</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (windSpeed.isEmpty()) {</span>
+<span class="fc" id="L74">            cacheStats.setNumberOfMisses(cacheStats.getNumberOfMisses() + 1);</span>
+<span class="fc" id="L75">            WindSpeed ws = service.consumeWindSpeed();</span>
+<span class="fc" id="L76">            this.createWindSpeed(ws);</span>
+<span class="fc" id="L77">            windSpeed.add(ws);</span>
+<span class="fc" id="L78">        } else {</span>
+<span class="fc" id="L79">            cacheStats.setNumberOfHits(cacheStats.getNumberOfHits() + 1);</span>
+        }
+<span class="fc" id="L81">        this.updateCacheStats(cacheStats);</span>
+
+<span class="fc" id="L83">        return windSpeed.get(0);</span>
+    }
+
+    public WindSpeedData findWindSpeedById(String classWindSpeed) {
+<span class="fc" id="L87">        WindSpeed windSpeed = this.getWindSpeed();</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">        for (WindSpeedData ws : windSpeed.getData()) {</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">            if (ws.getClassWindSpeed().equals(classWindSpeed)) {</span>
+<span class="fc" id="L90">                return ws;</span>
+            }
+<span class="nc" id="L92">        }</span>
+<span class="nc" id="L93">        return null;</span>
+    }
+
+    public void createWindSpeed(WindSpeed windSpeed) {
+<span class="fc" id="L97">        em.persist(windSpeed);</span>
+<span class="fc" id="L98">    }</span>
+
+    public void deleteWindSpeed(WindSpeed windSpeed) {
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        if (!em.contains(windSpeed)) {</span>
+<span class="nc" id="L102">            windSpeed = em.merge(windSpeed);</span>
+        }
+
+<span class="nc" id="L105">        em.remove(windSpeed);</span>
+<span class="nc" id="L106">    }</span>
+
+    //WeatherForecast
+    public List getAllWeatherForecast() {
+<span class="fc" id="L110">        return em.createNamedQuery(&quot;WeatherForecast.findAll&quot;, WeatherForecast.class).getResultList();</span>
+    }
+
+    public void updateWeatherForecast(WeatherForecast weatherForecast) {
+<span class="fc" id="L114">        em.merge(weatherForecast);</span>
+<span class="fc" id="L115">    }</span>
+
+    public void createWeatherForecast(WeatherForecast weatherForecast) {
+<span class="fc" id="L118">        em.persist(weatherForecast);</span>
+<span class="fc" id="L119">    }</span>
+
+    public void deleteWeatherForecast(WeatherForecast weatherForecast) {
+<span class="nc bnc" id="L122" title="All 2 branches missed.">        if (!em.contains(weatherForecast)) {</span>
+<span class="nc" id="L123">            weatherForecast = em.merge(weatherForecast);</span>
+        }
+
+<span class="nc" id="L126">        em.remove(weatherForecast);</span>
+<span class="nc" id="L127">    }</span>
+
+    public WeatherForecast getWeatherForecastByDistrict(String globalId) {
+<span class="fc" id="L130">        List&lt;WeatherForecast&gt; wf = this.getAllWeatherForecast();</span>
+<span class="fc" id="L131">        List&lt;WeatherForecast&gt; newwf = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L132">        CacheStats cacheStats = this.getCacheStats();</span>
+<span class="fc" id="L133">        cacheStats.setNumberOfRequests(cacheStats.getNumberOfRequests() + 1);</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">        if (wf.isEmpty()) {</span>
+<span class="fc" id="L135">            cacheStats.setNumberOfMisses(cacheStats.getNumberOfMisses() + 1);</span>
+
+<span class="fc" id="L137">            WeatherForecast w = service.consumeWeatherForecast(globalId);</span>
+<span class="fc" id="L138">            w.setLastRefresh(new Date());</span>
+<span class="fc" id="L139">            this.updateWeatherForecast(w);</span>
+<span class="fc" id="L140">            newwf.add(w);</span>
+<span class="fc" id="L141">        } else {</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">            for (WeatherForecast x : wf) {</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">                if (Integer.toString(x.getGlobalIdLocal()).equals(globalId)) {</span>
+<span class="fc" id="L144">                    newwf.add(x);</span>
+                }
+<span class="fc" id="L146">            }</span>
+
+<span class="fc bfc" id="L148" title="All 2 branches covered.">            if (newwf.isEmpty()) {</span>
+<span class="fc" id="L149">                cacheStats.setNumberOfMisses(cacheStats.getNumberOfMisses() + 1);</span>
+
+<span class="fc" id="L151">                WeatherForecast w = service.consumeWeatherForecast(globalId);</span>
+<span class="fc" id="L152">                w.setLastRefresh(new Date());</span>
+<span class="fc" id="L153">                this.createWeatherForecast(w);</span>
+<span class="fc" id="L154">                newwf.add(w);</span>
+<span class="fc" id="L155">            } else {</span>
+<span class="fc" id="L156">                cacheStats.setNumberOfHits(cacheStats.getNumberOfHits() + 1);</span>
+            }
+        }
+<span class="fc" id="L159">        this.updateCacheStats(cacheStats);</span>
+
+<span class="pc bpc" id="L161" title="1 of 2 branches missed.">        if (newwf.size() &gt; 1) {</span>
+<span class="nc" id="L162">            Collections.sort(newwf, (WeatherForecast wf1, WeatherForecast wf2) -&gt; wf2.getLastRefresh().compareTo(wf1.getLastRefresh()));</span>
+        }
+
+<span class="fc" id="L165">        return newwf.get(0);</span>
+    }
+
+    //District
+    public District getDistricts() {
+<span class="fc" id="L170">        List&lt;District&gt; districts = em.createNamedQuery(&quot;District.findAll&quot;, District.class).getResultList();</span>
+<span class="fc" id="L171">        CacheStats cacheStats = this.getCacheStats();</span>
+<span class="fc" id="L172">        cacheStats.setNumberOfRequests(cacheStats.getNumberOfRequests() + 1);</span>
+<span class="fc bfc" id="L173" title="All 2 branches covered.">        if (districts.isEmpty()) {</span>
+<span class="fc" id="L174">            cacheStats.setNumberOfMisses(cacheStats.getNumberOfMisses() + 1);</span>
+
+<span class="fc" id="L176">            District ws = service.consumeDistrict();</span>
+<span class="fc" id="L177">            this.createDistrict(ws);</span>
+<span class="fc" id="L178">            districts.add(ws);</span>
+<span class="fc" id="L179">        } else {</span>
+<span class="fc" id="L180">            cacheStats.setNumberOfHits(cacheStats.getNumberOfHits() + 1);</span>
+        }
+<span class="fc" id="L182">        this.updateCacheStats(cacheStats);</span>
+<span class="fc" id="L183">        return districts.get(0);</span>
+    }
+
+    public String translateDistrict(String local) {
+<span class="fc" id="L187">        District d = this.getDistricts();</span>
+<span class="fc" id="L188">        String id = null;</span>
+<span class="pc bpc" id="L189" title="1 of 2 branches missed.">        for (DistrictData cd : d.getData()) {</span>
+<span class="pc bpc" id="L190" title="1 of 2 branches missed.">            if (local.equalsIgnoreCase(cd.getLocal())) {</span>
+<span class="fc" id="L191">                id = Integer.toString(cd.getGlobalIdLocal());</span>
+<span class="fc" id="L192">                break;</span>
+            }
+<span class="nc" id="L194">        }</span>
+<span class="fc" id="L195">        return id;</span>
+    }
+
+    public DistrictData findDistrictById(Long id) {
+
+<span class="fc" id="L200">        List&lt;District&gt; district = em.createNamedQuery(&quot;District.findAll&quot;, District.class).getResultList();</span>
+<span class="pc bpc" id="L201" title="1 of 2 branches missed.">        for (DistrictData ws : district.get(0).getData()) {</span>
+<span class="pc bpc" id="L202" title="1 of 2 branches missed.">            if (ws.getIdDistrito() == id) {</span>
+<span class="fc" id="L203">                return ws;</span>
+            }
+<span class="nc" id="L205">        }</span>
+<span class="nc" id="L206">        return null;</span>
+    }
+
+    public void createDistrict(District district) {
+<span class="fc" id="L210">        em.persist(district);</span>
+<span class="fc" id="L211">    }</span>
+
+    public void deleteDistrict(District district) {
+<span class="nc bnc" id="L214" title="All 2 branches missed.">        if (!em.contains(district)) {</span>
+<span class="nc" id="L215">            district = em.merge(district);</span>
+        }
+
+<span class="nc" id="L218">        em.remove(district);</span>
+<span class="nc" id="L219">    }</span>
+
+    //CacheStats
+    public CacheStats getCacheStats() {
+<span class="fc" id="L223">        List&lt;CacheStats&gt; list = em.createNamedQuery(&quot;CacheStats.find&quot;, CacheStats.class).getResultList();</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">        if (list.isEmpty()) {</span>
+<span class="fc" id="L225">            CacheStats cache = new CacheStats(0, 0, 0);</span>
+<span class="fc" id="L226">            this.createCacheStats(cache);</span>
+<span class="fc" id="L227">            list.add(cache);</span>
+        }
+
+<span class="fc" id="L230">        return list.get(0);</span>
+    }
+
+    public CacheStats findCacheStats(Long id) {
+<span class="fc" id="L234">        List&lt;CacheStats&gt; cache = em.createNamedQuery(&quot;CacheStats.find&quot;, CacheStats.class).getResultList();</span>
+<span class="pc bpc" id="L235" title="1 of 2 branches missed.">        if (cache.get(0).getId() == id) {</span>
+<span class="fc" id="L236">            return cache.get(0);</span>
+        }
+<span class="nc" id="L238">        return null;</span>
+    }
+
+    public void createCacheStats(CacheStats cacheStats) {
+<span class="fc" id="L242">        em.persist(cacheStats);</span>
+<span class="fc" id="L243">    }</span>
+
+    public void updateCacheStats(CacheStats cacheStats) {
+<span class="fc" id="L246">        em.merge(cacheStats);</span>
+<span class="fc" id="L247">    }</span>
+
+    public void deleteCacheStats(CacheStats cacheStats) {
+<span class="nc bnc" id="L250" title="All 2 branches missed.">        if (!em.contains(cacheStats)) {</span>
+<span class="nc" id="L251">            cacheStats = em.merge(cacheStats);</span>
+        }
+
+<span class="nc" id="L254">        em.remove(cacheStats);</span>
+<span class="nc" id="L255">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

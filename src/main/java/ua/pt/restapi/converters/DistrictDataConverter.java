@@ -3,12 +3,9 @@ package ua.pt.restapi.converters;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
-
-import java.util.List;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import ua.pt.restapi.models.DistrictData;
-
 /**
  *
  * @author ana
@@ -26,8 +23,7 @@ public class DistrictDataConverter implements AttributeConverter<DistrictData, S
         Gson gson = new Gson();
         Type type = new TypeToken<DistrictData>(){}.getType();
 
-        String json = gson.toJson(x, type);
-        return json;
+        return gson.toJson(x, type);
     }
 
     @Override
@@ -40,8 +36,7 @@ public class DistrictDataConverter implements AttributeConverter<DistrictData, S
         Gson gson = new Gson();
         Type type = new TypeToken<DistrictData>(){}.getType();
 
-        DistrictData districtDataList = gson.fromJson(districtIDData, type);
-        return districtDataList;
+        return gson.fromJson(districtIDData, type);
     }
 
 }

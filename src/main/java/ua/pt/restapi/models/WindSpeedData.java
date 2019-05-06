@@ -1,7 +1,5 @@
 package ua.pt.restapi.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;

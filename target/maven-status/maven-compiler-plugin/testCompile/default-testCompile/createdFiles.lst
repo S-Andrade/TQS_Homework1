@@ -1,0 +1,16 @@
+ua/pt/restapi/converters/DistrictDataConverterTest.class
+ua/pt/restapi/converters/WindSpeedDataConverterTest.class
+ua/pt/restapi/converters/WeatherDataConverterTest.class
+ua/pt/restapi/models/DistrictTest.class
+ua/pt/restapi/models/CacheStatsTest.class
+ua/pt/restapi/models/DistrictDataTest.class
+ua/pt/restapi/models/WeatherForecastTest.class
+ua/pt/restapi/models/WeatherTest.class
+ua/pt/restapi/dao/WeatherForecastDAOTest.class
+ua/pt/restapi/resources/WeatherResourceTest.class
+ua/pt/restapi/converters/WeatherForecastDataConverterTest.class
+ua/pt/restapi/models/WindSpeedTest.class
+ua/pt/restapi/models/WeatherDataTest.class
+ua/pt/restapi/service/ServiceTest.class
+ua/pt/restapi/models/WindSpeedDataTest.class
+ua/pt/restapi/models/WeatherForecastDataTest.class

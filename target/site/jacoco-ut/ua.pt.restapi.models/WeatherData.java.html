@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WeatherData.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TQS_Homework1</a> &gt; <a href="index.source.html" class="el_package">ua.pt.restapi.models</a> &gt; <span class="el_source">WeatherData.java</span></div><h1>WeatherData.java</h1><pre class="source lang-java linenums">package ua.pt.restapi.models;
+
+
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = &quot;weatherData&quot;)
+@NamedQuery(name = &quot;WeatherData.findAll&quot;, query = &quot;SELECT t FROM WeatherData t&quot;)
+public class WeatherData implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column
+    private String descIdWeatherTypeEN;
+
+    @Column
+    private String descIdWeatherTypePT;
+
+    @Column
+    private int idWeatherType;
+
+<span class="fc" id="L31">    public WeatherData() {</span>
+<span class="fc" id="L32">    }</span>
+
+
+<span class="fc" id="L35">    public WeatherData(String descIdWeatherTypeEN, String descIdWeatherTypePT, int idWeatherType) {</span>
+<span class="fc" id="L36">        this.descIdWeatherTypeEN = descIdWeatherTypeEN;</span>
+<span class="fc" id="L37">        this.descIdWeatherTypePT = descIdWeatherTypePT;</span>
+<span class="fc" id="L38">        this.idWeatherType = idWeatherType;</span>
+<span class="fc" id="L39">    }</span>
+
+
+    public long getId() {
+<span class="fc" id="L43">        return id;</span>
+    }
+    public String getDescIdWeatherTypeEN() {
+<span class="fc" id="L46">        return descIdWeatherTypeEN;</span>
+    }
+    public int getIdWeatherType() {
+<span class="fc" id="L49">        return idWeatherType;</span>
+    }
+    public String getDescIdWeatherTypePT() {
+<span class="fc" id="L52">        return descIdWeatherTypePT;</span>
+    }
+
+
+    public void setId(long id) {
+<span class="fc" id="L57">        this.id = id;</span>
+<span class="fc" id="L58">    }</span>
+    public void setDescIdWeatherTypeEN(String descIdWeatherTypeEN) {
+<span class="fc" id="L60">        this.descIdWeatherTypeEN = descIdWeatherTypeEN;</span>
+<span class="fc" id="L61">    }</span>
+    public void setDescIdWeatherTypePT(String descIdWeatherTypePT) {
+<span class="fc" id="L63">        this.descIdWeatherTypePT = descIdWeatherTypePT;</span>
+<span class="fc" id="L64">    }</span>
+    public void setIdWeatherType(int idWeatherType) {
+<span class="fc" id="L66">        this.idWeatherType = idWeatherType;</span>
+<span class="fc" id="L67">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DistrictData.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TQS_Homework1</a> &gt; <a href="index.source.html" class="el_package">ua.pt.restapi.models</a> &gt; <span class="el_source">DistrictData.java</span></div><h1>DistrictData.java</h1><pre class="source lang-java linenums">package ua.pt.restapi.models;
+
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = &quot;districtData&quot;)
+public class DistrictData implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column
+    private int idRegiao;
+
+    @Column
+    private String idAreaAviso;
+
+    @Column
+    private int idConcelho;
+
+    @Column
+    private int globalIdLocal;
+
+    @Column
+    private String latitude;
+
+    @Column
+    private int idDistrito;
+
+    @Column
+    private String local;
+
+    @Column
+    private String longitude;
+
+<span class="fc" id="L43">    public DistrictData() {</span>
+<span class="fc" id="L44">    }</span>
+
+<span class="fc" id="L46">    public DistrictData(int idRegiao, String idAreaAviso, int idConcelho, int globalIdLocal, String latitude, int idDistrito, String local, String longitude) {</span>
+<span class="fc" id="L47">        this.idRegiao = idRegiao;</span>
+<span class="fc" id="L48">        this.idAreaAviso = idAreaAviso;</span>
+<span class="fc" id="L49">        this.idConcelho = idConcelho;</span>
+<span class="fc" id="L50">        this.globalIdLocal = globalIdLocal;</span>
+<span class="fc" id="L51">        this.latitude = latitude;</span>
+<span class="fc" id="L52">        this.idDistrito = idDistrito;</span>
+<span class="fc" id="L53">        this.local = local;</span>
+<span class="fc" id="L54">        this.longitude = longitude;</span>
+<span class="fc" id="L55">    }</span>
+
+    public long getId() {
+<span class="fc" id="L58">        return id;</span>
+    }
+<span class="fc" id="L60">    public int getIdRegiao() { return idRegiao; }</span>
+<span class="fc" id="L61">    public String getIdAreaAviso() { return idAreaAviso; }</span>
+<span class="fc" id="L62">    public int getIdConcelho() { return idConcelho; }</span>
+<span class="fc" id="L63">    public int getGlobalIdLocal() { return globalIdLocal; }</span>
+<span class="fc" id="L64">    public String getLatitude() { return latitude; }</span>
+<span class="fc" id="L65">    public int getIdDistrito() { return idDistrito; }</span>
+<span class="fc" id="L66">    public String getLocal() { return local; }</span>
+<span class="fc" id="L67">    public String getLongitude() { return longitude; }</span>
+
+
+    public void setId(long id) {
+<span class="fc" id="L71">        this.id = id;</span>
+<span class="fc" id="L72">    }</span>
+<span class="fc" id="L73">    public void setIdRegiao(int idRegiao) { this.idRegiao = idRegiao; }</span>
+<span class="fc" id="L74">    public void setIdAreaAviso(String idAreaAviso) { this.idAreaAviso = idAreaAviso; }</span>
+<span class="fc" id="L75">    public void setIdConcelho(int idConcelho) { this.idConcelho = idConcelho; }</span>
+<span class="fc" id="L76">    public void setGlobalIdLocal(int globalIdLocal) { this.globalIdLocal = globalIdLocal; }</span>
+<span class="fc" id="L77">    public void setLatitude(String latitude) { this.latitude = latitude; }</span>
+<span class="fc" id="L78">    public void setIdDistrito(int idDistrito) { this.idDistrito = idDistrito; }</span>
+<span class="fc" id="L79">    public void setLocal(String local) { this.local = local; }</span>
+<span class="fc" id="L80">    public void setLongitude(String longitude) { this.longitude = longitude; }</span>
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

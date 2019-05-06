@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Service.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TQS_Homework1</a> &gt; <a href="index.source.html" class="el_package">ua.pt.restapi.service</a> &gt; <span class="el_source">Service.java</span></div><h1>Service.java</h1><pre class="source lang-java linenums">package ua.pt.restapi.service;
+
+import javax.ejb.Stateless;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.Response;
+import ua.pt.restapi.models.District;
+import ua.pt.restapi.models.Weather;
+import ua.pt.restapi.models.WeatherForecast;
+import ua.pt.restapi.models.WindSpeed;
+
+/**
+ *
+ * @author ana
+ */
+@Stateless
+<span class="fc" id="L17">public class Service {</span>
+
+    public WeatherForecast consumeWeatherForecast(String globalIdLocal) {
+        //previsao 5 dias
+<span class="fc" id="L21">        String targetUrl = &quot;http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/&quot;+globalIdLocal+&quot;.json&quot;;</span>
+<span class="fc" id="L22">        Client client = ClientBuilder.newClient();</span>
+
+<span class="fc" id="L24">        Response response = client.target(targetUrl).request().get();</span>
+<span class="fc" id="L25">        WeatherForecast wf = response.readEntity(WeatherForecast.class);</span>
+
+<span class="fc" id="L27">        response.close();</span>
+<span class="fc" id="L28">        client.close();</span>
+
+<span class="fc" id="L30">        return wf;</span>
+    }
+
+    public WindSpeed consumeWindSpeed() {
+        //lista da intensidade vento
+<span class="fc" id="L35">        String targetUrl= &quot;http://api.ipma.pt/open-data/wind-speed-daily-classe.json&quot;;</span>
+
+        //previsão de vento
+<span class="fc" id="L38">        Client client = ClientBuilder.newClient();</span>
+
+<span class="fc" id="L40">        Response response = client.target(targetUrl).request().get();</span>
+<span class="fc" id="L41">        WindSpeed wf = response.readEntity(WindSpeed.class);</span>
+
+<span class="fc" id="L43">        response.close();</span>
+<span class="fc" id="L44">        client.close();</span>
+
+<span class="fc" id="L46">        return wf;</span>
+    }
+
+    public District consumeDistrict() {
+        //identificadoção das capitais distrito e ilhas
+<span class="fc" id="L51">        String targetUrl = &quot;http://api.ipma.pt/open-data/distrits-islands.json&quot;;</span>
+<span class="fc" id="L52">        Client client = ClientBuilder.newClient();</span>
+
+<span class="fc" id="L54">        Response response = client.target(targetUrl).request().get();</span>
+<span class="fc" id="L55">        District wf = response.readEntity(District.class);</span>
+
+<span class="fc" id="L57">        response.close();</span>
+<span class="fc" id="L58">        client.close();</span>
+
+<span class="fc" id="L60">        return wf;</span>
+    }
+
+    public Weather consumeWeather() {
+        //identificadores do tempo
+<span class="fc" id="L65">        String targetUrl = &quot;http://api.ipma.pt/open-data/weather-type-classe.json&quot;;</span>
+<span class="fc" id="L66">        Client client = ClientBuilder.newClient();</span>
+
+<span class="fc" id="L68">        Response response = client.target(targetUrl).request().get();</span>
+<span class="fc" id="L69">        Weather wf = response.readEntity(Weather.class);</span>
+
+<span class="fc" id="L71">        response.close();</span>
+<span class="fc" id="L72">        client.close();</span>
+
+<span class="fc" id="L74">        return wf;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

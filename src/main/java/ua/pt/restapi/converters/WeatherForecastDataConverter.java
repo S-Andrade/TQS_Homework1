@@ -6,7 +6,6 @@ import ua.pt.restapi.models.WeatherForecastData;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
-import java.util.List;
 
 /**
  *
@@ -25,8 +24,7 @@ public class WeatherForecastDataConverter implements AttributeConverter<WeatherF
         Type type = new TypeToken<WeatherForecastData>() {
         }.getType();
 
-        String json = gson.toJson(weatherForecastDataList, type);
-        return json;
+        return gson.toJson(weatherForecastDataList, type);
     }
 
     @Override
@@ -39,8 +37,6 @@ public class WeatherForecastDataConverter implements AttributeConverter<WeatherF
         Type type = new TypeToken<WeatherForecastData>() {
         }.getType();
 
-        WeatherForecastData weatherForecastDataList = gson.fromJson(weatherForecastData, type);
-        return weatherForecastDataList;
-    }
+        return gson.fromJson(weatherForecastData, type); }
 
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WeatherResource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TQS_Homework1</a> &gt; <a href="index.source.html" class="el_package">ua.pt.restapi.resources</a> &gt; <span class="el_source">WeatherResource.java</span></div><h1>WeatherResource.java</h1><pre class="source lang-java linenums">package ua.pt.restapi.resources;
+
+import ua.pt.restapi.dao.WeatherForecastDAO;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import ua.pt.restapi.models.CacheStats;
+import ua.pt.restapi.models.District;
+import ua.pt.restapi.models.Weather;
+import ua.pt.restapi.models.WeatherForecast;
+import ua.pt.restapi.models.WindSpeed;
+import ua.pt.restapi.service.Service;
+
+@RequestScoped
+@Path(&quot;&quot;)
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+<span class="fc" id="L24">public class WeatherResource {</span>
+
+    @Inject
+    WeatherForecastDAO todoDAO;
+    
+    @Inject
+    Service service;
+
+    @GET
+    @Path(&quot;windspeeds&quot;)
+    public Response getWindSpeed() {
+<span class="fc" id="L35">        WindSpeed ws = todoDAO.getWindSpeed();</span>
+<span class="fc" id="L36">        return Response.ok(ws).build();</span>
+    }
+    
+    @GET
+    @Path(&quot;districts&quot;)
+    public Response getAllDistrict() {
+<span class="fc" id="L42">        District district = todoDAO.getDistricts();</span>
+<span class="fc" id="L43">        return Response.ok(district).build();</span>
+    }
+    
+    @GET
+    @Path(&quot;getweather/{cidade}&quot;)
+    public Response getWeatherForecast(@PathParam(&quot;cidade&quot;) String cidade) {
+<span class="fc" id="L49">        WeatherForecast wf = todoDAO.getWeatherForecastByDistrict(todoDAO.translateDistrict(cidade));</span>
+<span class="fc" id="L50">        return Response.ok(wf).build();</span>
+    }
+    
+    @GET
+    @Path(&quot;allweather&quot;)
+    public Response getAllWeather() {
+<span class="fc" id="L56">        Weather weather = todoDAO.getWeather();</span>
+<span class="fc" id="L57">        return Response.ok(weather).build();</span>
+    }
+    
+    @GET
+    @Path(&quot;cachestats&quot;)
+    public Response getCacheStats() {
+<span class="fc" id="L63">        CacheStats cacheStats = todoDAO.getCacheStats();</span>
+<span class="fc" id="L64">        return Response.ok(cacheStats).build();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

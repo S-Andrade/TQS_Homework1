@@ -17,7 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import ua.pt.restapi.dao.WeatherDAO;
+import ua.pt.restapi.dao.WeatherForecastDAO;
 import ua.pt.restapi.models.CacheStats;
 import ua.pt.restapi.models.District;
 import ua.pt.restapi.models.DistrictData;
@@ -50,7 +50,7 @@ public class WeatherResourceTest {
     @BeforeEach
     public void setUp() {
         instance = new WeatherResource();
-        instance.todoDAO = mock(WeatherDAO.class);
+        instance.todoDAO = mock(WeatherForecastDAO.class);
 
     }
 

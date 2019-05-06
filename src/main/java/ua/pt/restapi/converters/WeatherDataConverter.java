@@ -3,11 +3,9 @@ package ua.pt.restapi.converters;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
-import java.util.List;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import ua.pt.restapi.models.WeatherData;
-
 /**
  *
  * @author ana
@@ -24,8 +22,7 @@ public class WeatherDataConverter implements AttributeConverter<WeatherData, Str
         Gson gson = new Gson();
         Type type = new TypeToken<WeatherData>(){}.getType();
 
-        String json = gson.toJson(weatherDataList, type);
-        return json;
+        return gson.toJson(weatherDataList, type);
     }
 
     @Override
@@ -37,7 +34,6 @@ public class WeatherDataConverter implements AttributeConverter<WeatherData, Str
         Gson gson = new Gson();
         Type type = new TypeToken<WeatherData>(){}.getType();
 
-        WeatherData weatherDataList = gson.fromJson(weatherIDData, type);
-        return weatherDataList;
+        return gson.fromJson(weatherIDData, type);
     }
 }
